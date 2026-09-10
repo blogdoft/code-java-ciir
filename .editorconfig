@@ -1,0 +1,28 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Google Java Style Guide: https://google.github.io/styleguide/javaguide.html
+# (2-space indent, 100-column limit). Enforced at build time by the Spotless plugin
+# (googleJavaFormat) in the root pom.xml — this section documents the same rule for editors.
+[*.java]
+indent_size = 2
+max_line_length = 100
+
+[*.{xml,json}]
+indent_size = 2
+
+[pom.xml]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab

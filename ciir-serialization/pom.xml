@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.ftathiago.ciir</groupId>
+    <artifactId>ciir-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>ciir-serialization</artifactId>
+  <packaging>jar</packaging>
+
+  <name>ciir-serialization</name>
+  <description>
+    JSONL writer, manifest.json/analysis-report.json writer, and the packaged ciir.schema.json
+    resource. Implements ciir-application's I/O ports. No dependency on JavaParser.
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>dev.ftathiago.ciir</groupId>
+      <artifactId>ciir-application</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.networknt</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <!-- Single source of truth: copy the repo-root schema into this module's classpath at
+           build time instead of keeping a second checked-in copy under src/main/resources. -->
+      <resource>
+        <directory>${project.basedir}/../schemas</directory>
+        <targetPath>ciir</targetPath>
+        <includes>
+          <include>ciir.schema.json</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>
